@@ -1,0 +1,96 @@
+import model.Carro;
+
+public class Main {
+    public static void main(String[] args) {
+        Carro carro1 = new Carro("Fiat", "Branco", 2019);
+        Carro carro2 = new Carro("Ferrari", "Vermelho");
+
+        System.out.println("Carro 1: " + carro1.getMarca() + ", " + carro1.getCor() + ", " + carro1.getAno());
+        System.out.println("Carro 2: " + carro2.getMarca() + ", " + carro2.getCor());
+
+        carro1.acelerar(60);
+        carro1.frear(20);
+        carro1.pintar("Preto");
+
+        System.out.println("Carro 1 é seminovo? " + carro1.seminovos());
+        System.out.println("Carro 2 é seminovo? " + carro2.seminovos());
+    }
+}
+package model;
+
+public class Carro {
+    private String marca;
+    private String cor;
+    private int ano;
+    private int velocidade;
+
+
+    public Carro(String marca, String cor, int ano) {
+        this.marca = marca;
+        this.cor = cor;
+        this.ano = ano;
+        this.velocidade = 0;
+    }
+
+
+    public Carro(String marca, String cor) {
+        this.marca = marca;
+        this.cor = cor;
+        this.ano = 0;
+        this.velocidade = 0;
+    }
+
+
+    public String getMarca() {
+        return marca;
+    }
+
+    public void setMarca(String marca) {
+        this.marca = marca;
+    }
+
+    public String getCor() {
+        return cor;
+    }
+
+    public void setCor(String cor) {
+        this.cor = cor;
+    }
+
+    public int getAno() {
+        return ano;
+    }
+
+    public void setAno(int ano) {
+        this.ano = ano;
+    }
+
+    public int getVelocidade() {
+        return velocidade;
+    }
+
+
+    public void acelerar(int valor) {
+        velocidade += valor;
+        System.out.println(marca + " acelerou. Velocidade atual: " + velocidade +"km");
+    }
+
+    public void frear(int valor) {
+        if (velocidade - valor < 0) {
+            velocidade = 0;
+        } else {
+            velocidade -= valor;
+        }
+        System.out.println(marca + " freou. Velocidade atual: " + velocidade + "km");
+    }
+
+    public void pintar(String novaCor) {
+        this.cor = novaCor;
+        System.out.println("O carro foi pintado de: " + cor);
+    }
+
+
+    public boolean seminovos() {
+        return this.ano > 2018;
+    }
+}
